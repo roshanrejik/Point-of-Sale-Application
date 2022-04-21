@@ -17,7 +17,8 @@ const CustomersList = (props) => {
     const [searchKey, setSearchKey] = useState('')
 
     const handleSearchKey = (e) => {
-        setSearchKey(e.target.value)
+        const ip=e.target.value
+        setSearchKey(ip.toLowerCase())
     }
     const dataOrder = (orderBy) => {
 
@@ -35,12 +36,17 @@ const CustomersList = (props) => {
     }
     const handleNext = () => {
         setStart(end)
-        if (end + 10 > customers.data.length) {
-            setEnd(customers.data.length)
+        if (end + 10 > show().length) {
+            setEnd(show().length)
         }
         else {
             setEnd(end + 10)
         }
+    }
+    const show=()=>{
+        return dataOrder(orderBy).filter(ele => {
+            return ele.name.toLowerCase().includes(searchKey)
+        })
     }
     return (
         <div className="shadow mb-4" >
@@ -57,7 +63,7 @@ const CustomersList = (props) => {
                             <option value='Reverse'>Reverse Order</option>
                         </select>
                         {/* button for pagination */}
-                        <button className=" btn btn-outline-dark pb-0" onClick={handleBack} disabled={start < 10}><h4 style={{ color: '#66FCF1' }}>back</h4></button>  <button className="btn btn-outline-dark pb-0" style={{ color: '#66FCF1' }} onClick={handleNext} disabled={end >= customers.data.length}><h4>Next</h4></button>
+                        <button className=" btn btn-outline-dark pb-0" onClick={handleBack} disabled={start < 10}><h4 style={{ color: '#66FCF1' }}>back</h4></button>  <button className="btn btn-outline-dark pb-0" style={{ color: '#66FCF1' }} onClick={handleNext} disabled={end >= show().length}><h4>Next</h4></button>
 
                     </div>
                 </h2></div>

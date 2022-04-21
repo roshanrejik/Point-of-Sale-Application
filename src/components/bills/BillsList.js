@@ -32,7 +32,7 @@ const BillsList = (props) => {
         <h2 className="border p-3 mt-4 rounded" style={{ backgroundColor: '#1F2833', color: '#66FCF1' }}>Listing Bills -{dataOrder(_id).length}
 
             <div className='d-inline' style={{ float: 'right' }}>
-                <button className=" btn btn-outline-dark pb-0" onClick={handleBack} disabled={start < 10}><h4 style={{ color: '#66FCF1' }}>back</h4></button>  <button className="btn btn-outline-dark pb-0" style={{ color: '#66FCF1' }} onClick={handleNext} disabled={end >= bills.data.length}><h4>Next</h4></button></div>
+                <button className=" btn btn-outline-dark pb-0" onClick={handleBack} disabled={start < 10}><h4 style={{ color: '#66FCF1' }}>back</h4></button>  <button className="btn btn-outline-dark pb-0" style={{ color: '#66FCF1' }} onClick={handleNext} disabled={end >= dataOrder(_id).length}><h4>Next</h4></button></div>
 
         </h2>
         {

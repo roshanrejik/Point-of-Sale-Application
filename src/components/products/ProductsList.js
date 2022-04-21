@@ -15,7 +15,8 @@ const ProductsList = (props) => {
     const [searchKey, setSearchKey] = useState('')
 
     const handleSearchKey = (e) => {
-        setSearchKey(e.target.value)
+        const ip=e.target.value
+        setSearchKey(ip.toLowerCase())
     }
     const dataOrder = (orderBy) => {
 
@@ -33,12 +34,17 @@ const ProductsList = (props) => {
     }
     const handleNext = () => {
         setStart(end)
-        if (end + 10 > products.data.length) {
-            setEnd(products.data.length)
+        if (end + 10 > show().length) {
+            setEnd(show().length)
         }
         else {
             setEnd(end + 10)
         }
+    }
+    const show=()=>{
+        return dataOrder(orderBy).filter(ele => {
+            return ele.name.toLowerCase().includes(searchKey)
+        })
     }
     return (
         <div className="shadow rounded ">
@@ -53,16 +59,14 @@ const ProductsList = (props) => {
                             <option value='Z-A'>Z-A Order</option>
                             <option value='Reverse'>Reverse Order</option>
                         </select>
-                        <button className=" btn btn-outline-dark pb-0" onClick={handleBack} disabled={start < 10}><h4 style={{ color: '#66FCF1' }}>back</h4></button>  <button className="btn btn-outline-dark pb-0" style={{ color: '#66FCF1' }} onClick={handleNext} disabled={end >= products.data.length}><h4>Next</h4></button>
+                        <button className=" btn btn-outline-dark pb-0" onClick={handleBack} disabled={start < 10}><h4 style={{ color: '#66FCF1' }}>back</h4></button>  <button className="btn btn-outline-dark pb-0" style={{ color: '#66FCF1' }} onClick={handleNext} disabled={end >= show().length}><h4>Next</h4></button>
                     </div>
                 </h2>
             </div>
 
             <div className=" p-4 rounded" >
                 {
-                    dataOrder(orderBy).filter(ele => {
-                        return ele.name.toLowerCase().includes(searchKey)
-                    }).slice(start, end).map(obj => {
+                    show().slice(start, end).map(obj => {
                         return (
 
                             <ProductsItem key={obj._id} obj={obj} />
