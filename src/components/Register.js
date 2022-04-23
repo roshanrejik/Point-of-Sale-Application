@@ -55,7 +55,7 @@ const Register = (props) => {
             {formik => (
                 <div  style={{width:'40%',display:'inline-block'}}>
                     <h1 className="my-4 fomt-weight -bold-display-4">Register User</h1>
-                    <Form>
+                    <Form >
                         <TextField label='enter username' name='username' type='text' />
                         <TextField label='enter email' name='email' type='text' />
                         <TextField label='enter password' name='password' type='password' />

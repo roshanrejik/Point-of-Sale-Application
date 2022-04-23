@@ -4,7 +4,7 @@ export const TextField=({label,...props})=>{
     const [field,meta]=useField(props)
     return(
         <div className="mb-2" >
-            <input   className={`form-control shadow-none ${meta.touched&& meta.error && 'is-invalied'}`}
+            <input   className={` form-control shadow-none ${meta.touched&& meta.error && 'is-invalid'}`}
             style={{display:'inline'}}
             {...field}{...props}
             placeholder={label}/>
